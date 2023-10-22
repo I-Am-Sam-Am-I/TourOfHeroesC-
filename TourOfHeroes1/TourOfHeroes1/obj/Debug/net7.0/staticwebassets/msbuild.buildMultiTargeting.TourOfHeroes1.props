@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TourOfHeroes1.props" />
+</Project>

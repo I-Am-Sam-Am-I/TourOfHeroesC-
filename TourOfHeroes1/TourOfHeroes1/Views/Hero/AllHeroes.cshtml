@@ -1,0 +1,37 @@
+﻿@model List<Hero>
+All Heroes
+
+<div class="mt-3 mb-3">
+    @using (Html.BeginForm("HeroDeleted", "Hero"))
+    {
+        <ul>
+            @foreach (Hero hero in Repository.AllHeroes)
+            {
+                if (hero != null)
+                {
+                    <li>
+                        <div class="btn btn-secondary disabled" disabled style="width:165px;margin:.25em 0em;text-align:left; background-color:black!important" id="@hero.Id"><span class="">@hero.Id : </span>@hero.Name</div><button style="margin:.25em 0em;" name="hero" value="@hero.Id" type="submit" class="btn btn-danger">X</button>
+                    </li>
+                }
+            }
+        </ul>
+    }
+</div> 
+
+<a class="btn btn-lg btn-secondary mx-auto" href="/Hero/Create">Add a Hero</a>
+
+@section Footer{
+    <div class="mt-3 mb-3">
+        @using (Html.BeginForm("MessageDeleted", "Hero"))
+        {
+            <h3 class="text-danger mt-2">Messages</h3>
+            <button class="btn btn-primary" type="submit">Clear Messages</button>
+            <ul>
+                @foreach (string message in Repository.AllMessages)
+                {
+                    <li>@message</li>
+                }
+            </ul>
+        }
+    </div>
+}

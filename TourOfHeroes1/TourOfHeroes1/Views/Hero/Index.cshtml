@@ -1,0 +1,49 @@
+﻿@model Hero
+@{
+    int i=0;
+}
+
+<div class="container">
+    <div class="mt-3 mb-3">
+        <h3 class="text-center">Top Heroes</h3>
+        <nav class="text-center">
+            @using (Html.BeginForm("HeroDetails", "Hero"))
+            {
+                @foreach (Hero hero in Repository.AllHeroes)
+                {
+                    <button id="@hero.Id" class="btn btn-lg btn-secondary mx-auto" href="/Hero/Details" name="number" value="@hero.Id" type="submit" style="width:200px;">@hero.Name</button>
+                    i++;
+                    if (i == 4)
+                    {
+                        break;
+                    }
+                }
+            }
+        </nav>
+    </div>
+
+    @using (Html.BeginForm("HeroSearch", "Hero"))
+    {
+        <div class="mt-3 mb-3">
+            <h4>Hero Search</h4>
+            <input name="searchstring" />
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    }
+</div>
+
+@section Footer{
+    <div class="mt-3 mb-3">
+        @using (Html.BeginForm("MessageDeleted", "Hero"))
+        {
+                <h3 class="text-danger mt-2">Messages</h3>
+                <button class="btn btn-primary" type="submit">Clear Messages</button>
+                <ul>
+                    @foreach (string message in Repository.AllMessages)
+                    {
+                        <li>@message</li>
+                    }
+                </ul>
+        }
+    </div>
+}

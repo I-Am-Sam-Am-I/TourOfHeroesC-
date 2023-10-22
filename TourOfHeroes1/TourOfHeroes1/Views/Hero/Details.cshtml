@@ -1,0 +1,37 @@
+﻿@model Hero
+@{
+    Hero hero = Model;
+}
+
+
+
+
+    <div class="mt-3 mb-3">
+        <h3>HERO Details</h3>
+        <label> ID: @hero.Id</label>
+    </div>
+
+    <div class="mt-3 mb-3">
+        <label>Hero Name: @hero.Name</label>
+        @* <input value="@hero.Name" name="heroName" /> *@
+    </div>
+
+@*     <button class="btn btn-primary" type="submit">save</button>
+
+ *@
+
+@section Footer{
+    <div class="mt-3 mb-3">
+        @using (Html.BeginForm("MessageDeleted", "Hero"))
+        {
+            <h3 class="text-danger mt-2">Messages</h3>
+            <button class="btn btn-primary" type="submit">Clear Messages</button>
+            <ul>
+                @foreach (string message in Repository.AllMessages)
+                {
+                    <li>@message</li>
+                }
+            </ul>
+        }
+    </div>
+}
